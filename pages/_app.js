@@ -4,7 +4,7 @@ import Head from "next/head";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
-const theme = createMuiTheme({});
+import theme from "../src/theme";
 
 const MyApp = ({ Component, pageProps }) => {
   React.useEffect(() => {
