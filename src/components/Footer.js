@@ -1,38 +1,159 @@
-import { Box, Container, Typography, useTheme, Grid } from "@material-ui/core";
+import {
+  Box,
+  Container,
+  Typography,
+  useTheme,
+  Grid,
+  Link,
+  IconButton,
+  Icon
+} from "@material-ui/core";
+
+import {
+  Facebook as FacebookIcon,
+  LinkedIn as LinkedInIcon,
+  Instagram as InstagramIcon
+} from "@material-ui/icons";
 
 export default function Footer() {
-  const { palette } = useTheme();
+  const { palette, spacing } = useTheme();
 
   return (
-    <Box style={{ backgroundColor: palette.primary.main }}>
-      <Container>
-        <Box py={4} color="white">
-          <Grid container>
-            <Grid item xs={2}>
-              <Typography variant="h6" gutterBottom>
-                NowClub
-              </Typography>
+    <>
+      <Box style={{ backgroundColor: palette.primary.dark }}>
+        <Container>
+          <Box py={6} color="white">
+            <Typography
+              variant="h5"
+              style={{ fontWeight: 700, letterSpacing: -0.5 }}
+            >
+              Now Club
+            </Typography>
 
-              <Typography variant="body1">Social Links</Typography>
-            </Grid>
+            <Box mt={1} color="white">
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={3}>
+                  <Box>
+                    <Typography variant="body1">email@email.com</Typography>
+                    <Typography variant="body1">+351 964 123 112</Typography>
+                  </Box>
 
-            <Grid item xs={2}>
-              <Typography variant="subtitle2" display="block">
-                Services
-              </Typography>
-              <Typography variant="body2" display="block">
-                Service #1
-              </Typography>
-              <Typography variant="body2" display="block">
-                Service #1
-              </Typography>
-              <Typography variant="body2" display="block">
-                Service #1
-              </Typography>
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
-    </Box>
+                  <Box
+                    mt={2}
+                    style={{
+                      display: "flex",
+                      gap: spacing(1),
+                      flexDirection: "row"
+                    }}
+                  >
+                    <Icon color="inherit" size="large">
+                      <FacebookIcon />
+                    </Icon>
+                    <Icon color="inherit" size="large">
+                      <LinkedInIcon />{" "}
+                    </Icon>
+                    <Icon color="inherit" size="large">
+                      <InstagramIcon />{" "}
+                    </Icon>
+                  </Box>
+                </Grid>
+
+                <Grid
+                  item
+                  container
+                  xs={12}
+                  md={3}
+                  direction="column"
+                  spacing={1}
+                >
+                  <Grid item>
+                    <Typography variant="h6">Links</Typography>
+                  </Grid>
+
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      Entry1
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      Entry2
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      Entry3
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      Entry4
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      Contacts
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      FAQ
+                    </Link>
+                  </Grid>
+                </Grid>
+
+                <Grid
+                  item
+                  container
+                  xs={12}
+                  md={3}
+                  direction="column"
+                  spacing={1}
+                >
+                  <Grid item>
+                    <Typography variant="h6">Links</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      Entry1
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      Entry2
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      Entry3
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      Entry4
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      Contacts
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link color="inherit" href="#" variant="body1">
+                      FAQ
+                    </Link>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+      <Box py={2}>
+        <Container>
+          <Typography variant="body2">Copyright @ 2021</Typography>
+        </Container>
+      </Box>
+    </>
   );
 }
