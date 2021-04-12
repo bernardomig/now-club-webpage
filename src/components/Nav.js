@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 import {
   AppBar,
@@ -6,36 +8,33 @@ import {
   Typography,
   Grid,
   Button,
-  Container,
   useMediaQuery,
   IconButton,
-  ButtonBase,
   Tabs,
   Tab,
   Menu,
   MenuItem,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 
 import { useTheme } from "@material-ui/styles";
 
 import TranslateIcon from "@material-ui/icons/Translate";
 import ExpandModeIcon from "@material-ui/icons/ExpandMore";
+import MenuIcon from "@material-ui/icons/Menu";
 
 function LanguageSwitcher() {
   const languages = [
-    {
-      en: { label: "English" },
-      fr: { label: "French" },
-      de: { label: "Deutch" },
-      es: { label: "Español" }
-    }
+    { key: "en", label: "English" },
+    { key: "fr", label: "French" },
+    { key: "de", label: "Deutch" },
+    { key: "es", label: "Español" },
   ];
 
   const [lang, setLang] = useState("en");
 
   const theme = useTheme();
-  const isLargeWidth = useMediaQuery(theme.breakpoints.up("sm"));
+  const isLargeWidth = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
@@ -66,8 +65,8 @@ function LanguageSwitcher() {
       </div>
 
       <Menu open={anchorEl} onClose={handleClose} anchorEl={anchorEl}>
-        {Object.entries(languages).map(([key, { label }]) => (
-          <MenuItem onClick={() => handleChangeLang("key")}>{label}</MenuItem>
+        {languages.map(({ key, label }) => (
+          <MenuItem onClick={() => handleChangeLang(key)}>{label}</MenuItem>
         ))}
       </Menu>
     </>
@@ -76,23 +75,29 @@ function LanguageSwitcher() {
 
 const useNavMenuStyles = makeStyles((theme) => ({
   tabContainer: { ...theme.mixins.toolbar },
-  tabItem: { ...theme.mixins.toolbar }
+  tabItem: { ...theme.mixins.toolbar, minWidth: "121px" },
 }));
 
 function NavMenu({ links }) {
-  const [tab, setTab] = useState(0);
   const classes = useNavMenuStyles();
+  const router = useRouter();
+  const path = router.asPath;
 
   return (
     <Tabs
       indicatorColor="primary"
       textColor="primary"
-      value={tab}
-      onChange={(event, value) => setTab(value)}
+      onChange={(event, value) => router.push(value)}
       className={classes.tabContainer}
+      value={path}
     >
       {links.map(({ label, href }) => (
-        <Tab className={classes.tabItem} component="a" label={label} />
+        <Tab
+          className={classes.tabItem}
+          component="a"
+          label={label}
+          value={href}
+        />
       ))}
     </Tabs>
   );
@@ -100,43 +105,42 @@ function NavMenu({ links }) {
 
 export default function Nav() {
   const theme = useTheme();
+  const isLargeWidth = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <AppBar
       position="static"
       elevation={0}
       style={{
-        borderBottom: `1px solid ${theme.palette.divider}`
+        borderBottom: `1px solid ${theme.palette.divider}`,
       }}
     >
       <Toolbar>
-        <Grid container alignItems="center">
+        <Grid container alignItems="center" spacing={2}>
+          {!isLargeWidth && (
+            <IconButton>
+              <MenuIcon />
+            </IconButton>
+          )}
+
           <Grid item>
-            <Typography variant="h6">Now Club</Typography>
+            <Typography variant="h6">
+              <Link href="/">Now Club</Link>
+            </Typography>
           </Grid>
 
           <Grid item xs />
 
-          <Grid item>
-            <NavMenu
-              links={[
-                { label: "Home" },
-                { label: "Blog" },
-                { label: "Hire Us" },
-                { label: "Contacts" }
-              ]}
-            />
-          </Grid>
+          {isLargeWidth && (
+            <Grid item>
+              <NavMenu links={[{ label: "Contact", href: "/contact" }]} />
+            </Grid>
+          )}
 
           <Grid item>
             <Grid container spacing={2} direction="row" alignItems="center">
               <Grid item>
                 <LanguageSwitcher />
-              </Grid>
-              <Grid item>
-                <Button variant="contained" color="primary">
-                  Login
-                </Button>
               </Grid>
             </Grid>
           </Grid>
