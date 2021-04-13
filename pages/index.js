@@ -16,7 +16,7 @@ import {
   CardHeader,
   CardActions,
   CardActionArea,
-  CardContent,
+  CardContent
 } from "@material-ui/core";
 import Nav from "../src/components/Nav";
 import { grey, purple } from "@material-ui/core/colors";
@@ -29,33 +29,33 @@ const people = [
   {
     key: "c8bf171b-1972-42cd-86ac-da5b3b180e04",
     name: "Miguel Fidalgo",
-    role: "Founder and English teaching",
+    role: "Founder and English teaching"
   },
   {
     key: "453ec371-8917-4b88-83f8-22f924c6c738",
     name: "Susana Ho",
-    role: "Business Manager",
+    role: "Business Manager"
   },
   {
     key: "ba8049f0-4971-47d2-84d6-d325ffd80dfc",
     name: "Ivan Garcia",
-    role: "Pedagogic Director",
+    role: "Pedagogic Director"
   },
   {
     key: "787d02a3-7578-4f3c-8404-155e821c340b",
     name: "Lorena Lomba",
-    role: "English Teacher",
+    role: "English Teacher"
   },
   {
     key: "279805d2-a4d7-4493-9520-ebab6f71dfe2",
     name: "Pedro Fonseca",
-    role: "English Teacher",
+    role: "English Teacher"
   },
   {
     key: "fd90eb63-3284-48c7-8e43-f0ef87e3d40c",
     name: "Nayara Carvalho",
-    role: "English Teacher",
-  },
+    role: "English Teacher"
+  }
 ];
 
 export default function Home() {
@@ -119,7 +119,7 @@ export default function Home() {
                       width: "100%",
                       aspectRatio: "16 / 9",
                       maxHeight: "360px",
-                      minHeight: "240px",
+                      minHeight: "240px"
                     }}
                   />
                 </Grid>
@@ -159,7 +159,7 @@ export default function Home() {
                       backgroundPosition: "center",
                       overflow: "hidden",
                       width: "100%",
-                      height: "100%",
+                      height: "100%"
                     }}
                   />
                 </Grid>
@@ -374,12 +374,25 @@ export default function Home() {
                     <Paper
                       style={{
                         backgroundImage: `url(https://i.pravatar.cc/300?u=${key})`,
-                        backgroundSize: "contain",
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
                         aspectRatio: "1/1",
                         width: "100%",
-                        height: "100%",
+                        height: "100%"
                       }}
-                    ></Paper>
+                    >
+                      <Box
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        height="100%"
+                        color="white"
+                      >
+                        <Typography variant="h6" align="center">
+                          {name}
+                        </Typography>
+                      </Box>
+                    </Paper>
                   </Grid>
                 ))}
               </Grid>

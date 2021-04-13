@@ -186,7 +186,12 @@ export default function Nav() {
 
             {isLargeWidth && (
               <Grid item>
-                <NavMenu links={[{ label: "Contact", href: "/contact" }]} />
+                <NavMenu
+                  links={[
+                    { label: "Courses", href: "/courses" },
+                    { label: "Contact", href: "/contact" }
+                  ]}
+                />
               </Grid>
             )}
 
